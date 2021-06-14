@@ -1,6 +1,5 @@
 package br.edu.insper.desagil.backend.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CollaborationTrack extends Track{
@@ -13,13 +12,18 @@ public class CollaborationTrack extends Track{
 	
 	@Override
 	public String getFullArtistName() {
-		String f = "";
-		List<String> all = new ArrayList <>();
+		String f = this.artist.getName() +" (feat. ";
+		
+		//Fazendo um for para percorrer a lista de nomes e ir adicionando cada colaborador como string
 		for (int i = 0; i < this.collaborators.size(); i++) {
-			Artist collaborator = this.collaborators.get(i);
-			all.add(collaborator.getName());
+			if (i == this.collaborators.size()-1) {
+				f += this.collaborators.get(i).getName();
+			}
+			else {
+				f += String.join(", ",this.collaborators.get(i).getName());
+			}
 		}
-		f = String.join("feat.", all + ",");
+		f += ")";
 		return f;
 	}
 }
