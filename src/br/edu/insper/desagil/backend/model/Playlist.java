@@ -10,7 +10,7 @@ public class Playlist {
 	private List<Track> tracks;
 	private Map<String,Integer> ratings;
 	
-	public Playlist(int id, List<Track> tracks, Map<String, Integer> ratings) {
+	public Playlist(int id) {
 		this.id = id;
 		this.tracks = new ArrayList<>();
 		this.ratings = new HashMap<>();
@@ -37,7 +37,12 @@ public class Playlist {
 	}
 	
 	public double averageRatings() {
-		double average = 0;
+		double soma = 0;
+		for (int avaliacao : this.ratings.values()) {
+			soma+= avaliacao;
+		}
+		double average = soma/this.ratings.size();
+		
 		int i = (int) average;
 		double d = average - i;
 		
